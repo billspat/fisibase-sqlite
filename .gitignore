@@ -4,3 +4,8 @@
 ._*
 .Spotlight-V100
 .Trashes
+*.sqlite
+*.sqlite3
+*.mdb
+*.ldb
+*.zip

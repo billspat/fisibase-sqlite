@@ -14,6 +14,13 @@
 --    added NOT NULL constraints (which may slow down inserts?) and additional indexes
 --   UNTESTED 2/28
 
+-- version 0.3
+--    added a 'clan' and 'region' fields to this table to accommodate other databases
+--    Since this is from the Talek DB, fill with 'Talek' and 'Narok'  
+--    not some in the talek db are actually fig Tree, and that needs to be determined and
+--    Region is not nullable and must have a character value of some kind, including 'unk'
+
+
 PRAGMA foreign_keys=OFF;
 
 -- include current columns and add new columns and indexes
@@ -21,16 +28,18 @@ DROP TABLE IF EXISTS `sessions`;
 
 CREATE TABLE sessions (
  session     varchar(10) NOT NULL, 
+ clan        varchar(25) ,
+ region      varchar(25) NOT NULL, -- Narok, Amboseli, Serena
  location    varchar(2)  ,
- "date"      DateTime    NOT NULL,
- sessiondate date        NOT NULL, 
+ "date"      DateTime    NOT NULL, -- this should go away; confuse with date type name
+ sessiondate date        NOT NULL, -- replaces 'date' field 
  start       time        NOT NULL, 
  stop        time        NOT NULL, 
  unidhyenas  varchar(255), -- 255 is MS Access limit for character fields 
  other       varchar(255),  
- tracked     integer     NOT NULL, 
- seen        integer     NOT NULL, 
- pickup      integer, 
+ tracked     integer     NOT NULL,  -- boolean
+ seen        integer     NOT NULL,  -- boolean
+ pickup      integer     , 
  entrystatus varchar(255), 
  eventnotes  varchar(255),
  PRIMARY KEY("session")
@@ -45,6 +54,8 @@ BEGIN;
 INSERT INTO sessions
 SELECT 
     session, 
+    "Talek" as clan,
+    "Narok" as region,
     location, 
     `DATE`, 
     strftime('%Y-%m-%d',tblSessions.DATE) as sessiondate,

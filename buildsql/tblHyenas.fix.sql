@@ -6,6 +6,9 @@
 
 
 -- version 0.1 change date/times formats to only dates or only times, remove 'park' field
+-- version 0.2
+--    added a 'region' field to this table to accommodate other databases'
+--    fill with 'Narok' for the talek DB
 
 PRAGMA foreign_keys=OFF;
 
@@ -14,19 +17,20 @@ DROP TABLE IF EXISTS `hyenas`;
 
 CREATE TABLE hyenas
  (
-    hyena              varchar(6)   NOT NULL, 
-    sampleid           integer, 
-    eartag             varchar, 
-    name               varchar(100), 
-    previd             varchar(25), 
-    sex                varchar(1), 
-    ageclass           varchar, 
-    status             varchar, 
-    firstseen          date, 
-    dengrad            date, 
+    id                 varchar(6)   NOT NULL,   -- alias for hyena field, added for consistency
+    hyena              varchar(6)   NOT NULL,   -- short name id, primary key
+    sampleid           integer,                 -- if this animal has a sample_id, foreign key for sampleid table
+    eartag             varchar,                 -- animals that get ear tags have numbers here
+    name               varchar(100),            -- full animal name (based on lineage)
+    previd             varchar(25),             -- comma list of ids, if this animal had another id previously
+    sex                varchar(1),              -- m,f,u,null
+    ageclass           varchar,                 -- typically not used as based on birthdate
+    status             varchar,                 -- clan membership status for current clan : immigrant, resident
+    firstseen          date,                    -- date the animal was first seen, usually min(Session.sessiondate) 
+    dengrad            date,                    -- date of den graduation; see documentation for protocol
     disappeared        date, 
-    mom                varchar(6), 
-    birthdate          date, 
+    mom                varchar(6),              -- foreign key of this table
+    birthdate          date,                    
     numberlittermates  integer, 
     litrank            integer, 
     arrivedden         date, 
@@ -35,7 +39,8 @@ CREATE TABLE hyenas
     mortalitysource    varchar, 
     deathdate          date, 
     weaned             date, 
-    clan               varchar, 
+    clan               varchar,
+    region             varchar, 
     miscnotes          text,     
     PRIMARY KEY("hyena")
 );
@@ -45,6 +50,7 @@ CREATE TABLE hyenas
 
 INSERT INTO hyenas
 SELECT
+    ID, 
     ID as hyena, 
     sampleID, 
     eartag, 
@@ -66,7 +72,8 @@ SELECT
     MortalitySource, 
     strftime('%Y-%m-%d',DeathDate) as `deathdate`, 
     strftime('%Y-%m-%d',Weaned) as `weaned`, 
-    Clan, 
+    clan, 
+    'Narok' as region,
     miscNotes
 
 from tblHyenas

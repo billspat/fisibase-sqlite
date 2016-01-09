@@ -17,13 +17,16 @@ This folder also includes simple R code for connecting and querying a SQLite fil
 
 *Instructions for Mac:*
 
-0. open terminal
+1. install the unix/mac mdb-tools.  One easy way is to first install the unix software installer called "homebrew" from http://brew.sh  The website has a terminal command for installation (requires internet connection).  Open terminal and copy and past the command at that website to install.  Then use homebrew to install mdbtools on the terminal with the following commands.   Homebrew command may tell you someting about /usr/local not being writable - it will give you a command to run to fix that.  then run 
 
-1. install the unix/mac mdb-tools.  One easy way is to first install the unix software installer called "homebrew" from http://brew.sh  The website has a terminal command for installation (requires internet connection).   Then use homebrew to install mdbtools on the terminal with the following commands
+    brew update
+    brew install mdbtools
 
-    $ brew update
-    $ brew install mdbtools
-
+    Test this install by running the following command in the terminal 
+    
+    which mdb-export
+    
+     
 
 2. Run the build script, specifying the name of the mdb file (accessfisi_be.mdb) and the name of the sqlitefile like this
 

@@ -8,6 +8,8 @@
 # sqlite files output will run on any platform with sqlite3
 # then looks for 'fixing' sql to transform 
 
+hash mdb-export >/dev/null 2>&1 || { echo >&2 "requires mdb-export but it doesn't appear to be installed.  You can install with homebrew ( http://brew.sh ) on Mac. After installing, use 'brew install mdbtools'"; exit 1; }
+
 if [ "$#" -lt 1 ]; then
     echo "Please indicate which MDB file to use"
     echo "Usage: $0 input_mdbfile.msb output.sqlite optional table list"

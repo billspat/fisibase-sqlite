@@ -8,7 +8,7 @@
 # sqlite files output will run on any platform with sqlite3
 # then looks for 'fixing' sql to transform 
 
-if [ $# < 1 ]; then
+if [ "$#" -lt 1 ]; then
     echo "Please indicate which MDB file to use"
     echo "Usage: $0 input_mdbfile.msb output.sqlite optional table list"
     exit 1
@@ -29,7 +29,7 @@ TMPDIR=`mktemp -d -t ${BASEDIR}` || exit 1
 SQLDIR='buildsql'
 
 
-tables="tblHyenas tblSessions tblHyenasPerSession tblAggression tblDarting tblGreeting tblRank2012"
+tables="tblHyenas tblSessions tblHyenasPerSession tblAggression tblDarting tblGreeting tblRank2012 tblLocationsPerSession tblLandmarks"
 # tables to do: "tblLandmarks, tblLocationsPerSession, tblPredatorsPerSession, tblEats, tblFeeding
 # tables with data in process : tblAppeasements 
 

@@ -1,7 +1,7 @@
 -- SESSIONS with hyenas 
 DROP VIEW IF EXISTS "sessions_view";
 
-CREATE VIEW sessions_plus AS 
+CREATE VIEW sessions_plus_view AS 
     SELECT sessions.session,  
 	sessions.location, 
 	sessions.sessiondate, 

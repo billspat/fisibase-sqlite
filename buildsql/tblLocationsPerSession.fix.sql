@@ -19,19 +19,19 @@ DROP TABLE IF EXISTS `locationspersession`;
 --  PRIMARY KEY("session", "time")
 -- );
     
-CREATE TABLE locationspersession from 
+CREATE TABLE locationspersession AS 
 SELECT 
     session,
-    strftime('%H:%M',TIME) as `time`,
+    strftime('%H:%M',tblLocationspersession.time) as `locationtime`,
     utme,
     utmn,
     direction,
-    landmark_id,
+    landmarkid
 from tblLocationspersession;
 
 
 -- CREATE INDEX date_index ON sessions ("date"); --should not be using 'date' field, compatibility
-CREATE INDEX idx_locationspersessiontime ON locationspersession ("session", "time");
+CREATE INDEX idx_locationspersessiontime ON locationspersession ("session", "locationtime");
 
 END TRANSACTION;
 

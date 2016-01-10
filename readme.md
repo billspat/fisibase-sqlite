@@ -1,10 +1,9 @@
-fisibase-build.sh : readme
-======================
+fisibase-sqlite
+===============
 
-There are scripts in this folder that can convert our existing database into a SQLite database for use with R or other systems on any computer (win/mac/linux/amiga/etc).  SQLite is a super efficient database engine and format that comes with every mac, easily installed in windows, runs in the background of every iPhone.  
+There are scripts in this folder that can convert an existing MS-Access formatted database into a SQLite format database file.  SQLite database can be used on any computer and with R or other systems.  However the programs here are designed to work on Mac or Linux systems and tailored for use on Mac.   Once these programs are run, the resulting SQLite file can be used anywhere.  
 
-
-Note that one could use a commercial app/ program like http://eggerapps.at/mdbviewer for mac, or various sqlite editors for windows that can export from MDB to SQLite.  Then run the X.fix.sql against sqlite.  These scripts depend on mdb-tools open source unix program that can read MDB format.  These tools are based on the command line and must be installed by the command line (see below)
+Note that one could use a commercial app/ program like http://eggerapps.at/mdbviewer for mac, or various sqlite editors for windows that can export from MDB to SQLite.  From this  Then run the X.fix.sql against sqlite.  These scripts depend on mdb-tools open source unix program that can read MDB format.  These tools are based on the command line and must be installed by the command line (see below)
 
 This folder also includes simple R code for connecting and querying a SQLite file. 
 
@@ -33,5 +32,5 @@ This folder also includes simple R code for connecting and querying a SQLite fil
     $ buildSQLiteFromMDB.sh <mdbfile> <sqlitefile>
 
    
-**Historical note**: from PSB: there may be other folders with starts of conversion or migrator scripts on the lab server, but this (fisibase-r/db) is the main repository for fisibase conversion scripts, becuase the primary purpose of converting is to use with {R,Python} X {Mac,Linux}
+**Historical note**: from PSB: there are other folders with versions of this  conversion script ( fisibase-r, etc) but this (fisibase-sqlite) is the main repository for fisibase conversion scripts.  It was split off into a seperate project.  
 

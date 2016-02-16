@@ -39,7 +39,7 @@ SELECT lower(ID) as hyena,
         "sex", 
         "status", 
         "notes" 
-FROM tblRank2012;
+FROM tblRanks;
 
 COMMIT;
 

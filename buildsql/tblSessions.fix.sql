@@ -20,6 +20,8 @@
 --    not some in the talek db are actually fig Tree, and that needs to be determined and
 --    Region is not nullable and must have a character value of some kind, including 'unk'
 
+-- version 0.3.1
+--    removed redundant column 'date' which is renamed sessiondate
 
 PRAGMA foreign_keys=OFF;
 
@@ -31,7 +33,6 @@ CREATE TABLE sessions (
  clan        varchar(25) ,
  region      varchar(25) NOT NULL, -- Narok, Amboseli, Serena
  location    varchar(2)  ,
- "date"      DateTime    NOT NULL, -- this should go away; confuse with date type name
  sessiondate date        NOT NULL, -- replaces 'date' field 
  start       time        NOT NULL, 
  stop        time        NOT NULL, 
@@ -57,7 +58,6 @@ SELECT
     "Talek" as clan,
     "Narok" as region,
     location, 
-    `DATE`, 
     strftime('%Y-%m-%d',tblSessions.DATE) as sessiondate,
     strftime('%H:%M',START)            as start,
     strftime('%H:%M',STOP)             as stop,

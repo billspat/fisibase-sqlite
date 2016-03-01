@@ -4,6 +4,9 @@
 -- keeps the 'date' field but creates betternamed sessiondate field
 -- renames 'time' field to 'greetingtime' 
 
+-- version 0.3.1
+--    removed redundant column 'date' in favor of renamed sessiondate
+
 DROP TABLE IF EXISTS greetings;
 --
 CREATE TABLE greetings (
@@ -11,8 +14,7 @@ CREATE TABLE greetings (
        sessiondate       date,
        checked            varchar, 
        error_check         varchar, 
-       typedby            varchar, 
-       `date`               date, 
+       typedby            varchar,  
        greetingtime         time, 
        approacher            varchar, 
        approached            varchar, 
@@ -64,7 +66,6 @@ SELECT
     `Checked?` as checked, 
     `Error check` as error_check, 
     typedBy, 
-    strftime('%Y-%m-%d',tblGreeting.`Date`) as `Date`, 
     strftime('%H:%M',`Time`) as greetingtime, 
     Approacher, 
     Approached, 

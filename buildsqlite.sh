@@ -81,6 +81,7 @@ for table in $tables; do
     if [[ -e "$SQLDIR/$table.fix.sql" ]]; then
         echo "running $table.fix.sql"
         sqlite3 "$sqlitefile" < "$SQLDIR/$table.fix.sql"
+        sqlite3 "$sqlitefile" < "drop table $table"
     fi
 done
 

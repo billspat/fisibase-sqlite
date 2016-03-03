@@ -93,3 +93,8 @@ echo "adding views..."
 sqlite3 "$sqlitefile" < "$SQLDIR/fisibase.views.sql" # need to make sure this runs from the same folder as the script...
 
 echo "...done"
+
+echo "removing old tables"
+for table in $tables; do
+    sqlite3 "$sqlitefile"  -cmd "drop table ${table}" < /dev/null
+done

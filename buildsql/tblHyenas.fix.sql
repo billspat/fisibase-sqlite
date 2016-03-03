@@ -79,7 +79,4 @@ SELECT
 from tblHyenas
 order by ID;
 
-SELECT COUNT(*), " hyena rows " from hyenas;
-
-
 PRAGMA foreign_keys=ON;

@@ -106,7 +106,5 @@ ORDER BY SESSIONDATE;
 
 END TRANSACTION;
 
-SELECT COUNT(*), " greetings rows " from greetings;
-
-
 PRAGMA foreign_keys=ON;
+

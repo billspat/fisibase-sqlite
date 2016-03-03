@@ -80,8 +80,12 @@ for table in $tables; do
     # if it exists, assume file is names like  ${table}_fix.sql
     if [[ -e "$SQLDIR/$table.fix.sql" ]]; then
         echo "running $table.fix.sql"
+        # build new table based on old tblTable
         sqlite3 "$sqlitefile" < "$SQLDIR/$table.fix.sql"
-        sqlite3 "$sqlitefile" < "drop table $table"
+        # print diagnostic msg, use table name without the 'tbl' prefix
+        # ASSUMES NEW TABLE NAME IS SAME AS OLD
+        sqlite3 "$sqlitefile"  -cmd "select count(*) from ${var#tbl}" < /dev/null
+        # note need dev/null here else sqlite enters interactive mode
     fi
 done
 

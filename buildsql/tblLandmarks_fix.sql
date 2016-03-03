@@ -37,8 +37,7 @@ CREATE INDEX idx_landmarks ON landmarks ("landmarkid");
 
 END TRANSACTION;
 
-SELECT COUNT(*), " landmarks rows " from landmarks;
-
 -- should check that no orphans from sessions are in this table after insert
 -- else this will blow up
 PRAGMA foreign_keys=ON;
+

@@ -378,7 +378,5 @@ SELECT
 from tblDarting
 order by dartingdate,hyena;
 
-SELECT COUNT(*), " darting rows " from darting;
-
-
 PRAGMA foreign_keys=ON;
+

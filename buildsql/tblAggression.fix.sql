@@ -72,7 +72,6 @@ SELECT
 FROM tblAggression inner join sessions on (tblAggression.session = sessions.session) 
 ORDER BY sessiondate, aggressiontime, aggressor;
 
-SELECT COUNT(*), " aggressions rows " from aggressions;
-
-
 PRAGMA foreign_keys=ON;
+
+

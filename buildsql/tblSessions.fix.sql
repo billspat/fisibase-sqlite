@@ -46,7 +46,6 @@ CREATE TABLE sessions (
  PRIMARY KEY("session")
 );
 
-CREATE INDEX date_index ON sessions ("date"); --should not be using 'date' field, compatibility
 CREATE INDEX idx_sessiondate ON sessions ("sessiondate");
 CREATE INDEX idx_sessiondatetime ON sessions ("sessiondate","start");
 
@@ -58,7 +57,7 @@ SELECT
     "Talek" as clan,
     "Narok" as region,
     location, 
-    strftime('%Y-%m-%d',tblSessions.DATE) as sessiondate,
+    strftime('%Y-%m-%d',tblSessions.`DATE`) as sessiondate,
     strftime('%H:%M',START)            as start,
     strftime('%H:%M',STOP)             as stop,
     unidhyenas,
@@ -75,7 +74,6 @@ order by sessiondate, start;
 
 END TRANSACTION;
 
-SELECT COUNT(*), " session rows " from sessions;
 
 -- should check that no orphans from sessions are in this table after insert
 -- else this will blow up

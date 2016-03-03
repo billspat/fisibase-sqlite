@@ -45,4 +45,3 @@ COMMIT;
 
 PRAGMA foreign_keys=on;
 
-SELECT COUNT(*), " rank rows " from ranks;

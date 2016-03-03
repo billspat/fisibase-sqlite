@@ -37,5 +37,3 @@ FROM (tblHyenasPerSession inner join tblSessions
   on tblHyenasPerSession.session = tblSessions.session)
   inner join tblHyenas on tblHyenasPerSession.Hyena = tblHyenas.ID;
 
-SELECT COUNT(*), " hyenaspersession rows " from hyenaspersession;
-

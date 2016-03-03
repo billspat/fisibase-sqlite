@@ -35,8 +35,7 @@ CREATE INDEX idx_locationspersessiontime ON locationspersession ("session", "loc
 
 END TRANSACTION;
 
-SELECT COUNT(*), " locationsPersession rows " from locationspersession;
-
 -- should check that no orphans from sessions are in this table after insert
 -- else this will blow up
 PRAGMA foreign_keys=ON;
+

@@ -84,7 +84,7 @@ for table in $tables; do
         sqlite3 "$sqlitefile" < "$SQLDIR/$table.fix.sql"
         # print diagnostic msg, use table name without the 'tbl' prefix
         # ASSUMES NEW TABLE NAME IS SAME AS OLD
-        sqlite3 "$sqlitefile"  -cmd "select count(*) from ${var#tbl}" < /dev/null
+        sqlite3 "$sqlitefile"  -cmd "select count(*) from ${table}" < /dev/null
         # note need dev/null here else sqlite enters interactive mode
     fi
 done

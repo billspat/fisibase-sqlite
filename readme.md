@@ -19,7 +19,7 @@ Install and Use
 
 *Install Instructions for Mac:*
 
-First you must install the open source mdb-tools software.  One easy way is to first install the software installer called "homebrew" from http://brew.sh  The website has a terminal command for installation (requires internet connection).  Open terminal and copy and past the command at that website to install.  Then use homebrew to install mdbtools on the terminal with the following commands.   Homebrew command may tell you someting about /usr/local not being writable - it will give you a command to run to fix that.  then run 
+First you must install the open source mdb-tools software.  One easy way is to first install the software installer called "homebrew" from http://brew.sh  The website has a terminal command for installation (requires internet connection).  Open terminal and copy and paste the command at that website to install.  Then use homebrew to install mdbtools on the terminal with the following commands.   Homebrew command may tell you someting about /usr/local not being writable - it will give you a command to run to fix that.  then run 
 
     brew update
     brew install mdbtools
@@ -30,7 +30,11 @@ First you must install the open source mdb-tools software.  One easy way is to f
 
 Note that 'homebrew' is useful for installing other unix-style software for development.      
 
-*Usage on Mac*
+*Converting the Database on Mac*
+
+First download the code in this git repository either by downloading the zip file or using 
+
+
 In the terminal, change to this directory, and Run the buildqslite.sh script, specifying the path to the name of the mdb file (db/accessfisi_be.mdb) and the name of the resulting sqlitefile like this (in the terminal)
 
    ./buildsqlite.sh <path/to/mdbfile> <sqlitefile>

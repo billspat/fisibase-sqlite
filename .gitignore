@@ -9,3 +9,5 @@
 *.mdb
 *.ldb
 *.zip
+db/archive
+db/archive/*

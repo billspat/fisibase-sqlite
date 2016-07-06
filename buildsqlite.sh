@@ -31,7 +31,7 @@ TMPDIR=`mktemp -d -t ${BASEDIR}` || exit 1
 SQLDIR='buildsql'
 
 
-tables="tblHyenas tblSessions tblHyenasPerSession tblAggression tblDarting tblGreetings tblRanks tblLocationsPerSession tblLandmarks"
+tables="tblHyenas tblSessions tblHyenasPerSession tblAggression tblDarting tblGreetings tblRanks tblLocationsPerSession tblLandmarks tblPreyDensity"
 # tables to do: "tblLandmarks, tblLocationsPerSession, tblPredatorsPerSession, tblEats, tblFeeding
 # tables with data in process : tblAppeasements 
 

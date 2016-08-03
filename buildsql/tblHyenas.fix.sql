@@ -9,6 +9,8 @@
 -- version 0.2
 --    added a 'region' field to this table to accommodate other databases'
 --    fill with 'Narok' for the talek DB
+-- version 0.3?
+--    convert sex to all lower case.  WHY are there still upper case here 
 
 PRAGMA foreign_keys=OFF;
 
@@ -56,7 +58,7 @@ SELECT
     eartag, 
     Name, 
     PrevID, 
-    Sex, 
+    lower(Sex) as sex, 
     AgeClass, 
     Status, 
     strftime('%Y-%m-%d',FirstSeen) as `firstseen`, 

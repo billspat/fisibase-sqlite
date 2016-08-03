@@ -92,8 +92,9 @@ done
 echo "adding views..."
 sqlite3 "$sqlitefile" < "$SQLDIR/fisibase.views.sql" # need to make sure this runs from the same folder as the script...
 
-echo "adding prey census data"
-sqlite3 "$sqlitefile" < $SQLDIR/tblPreyCensus.sql
+# prey density now part of Access database, but leave this as a comment
+# echo "adding prey census data"
+# sqlite3 "$sqlitefile" < $SQLDIR/tblPreyCensus.sql
 
 echo "...done"
 

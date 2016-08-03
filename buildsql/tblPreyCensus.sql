@@ -2,8 +2,17 @@
 -- create table for current prey census excel file (saved as tab delim)
 -- and import text file ; text file hard coded and needs to be replaced here
 -- then create a simplified table of just totals and proper dates
+-- this can be used with a command in the buildsqlite.sh file as 
+-- sqlite3 "$sqlitefile" < $SQLDIR/tblPreyCensus.sql
+-- OR something like (replace name of database file )
+-- sqlite3 mydb.sqlite < buildsql/tblPreyCensus.sql 
+-- from the terminal
 
 -- version 0.1 March 2016
+-- June 2016
+-- preyDensity is a table in MS Access database version so this is no longer used
+-- kept for referennce only
+
 
 drop table if exists tblPreyCensus;
 

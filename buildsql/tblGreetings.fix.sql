@@ -45,11 +45,8 @@ BEGIN;
 
 INSERT INTO greetings
 SELECT
-    tblGreeting.session, 
-    strftime('%Y-%m-%d',tblGreeting.DATE) as SESSIONDATE,
-    `Checked?` as checked, 
-    `Error check` as error_check, 
-    typedBy, 
+    tblGreetings.session, 
+    strftime('%Y-%m-%d',tblGreetings.DATE) as SESSIONDATE, 
     strftime('%H:%M',`grtTime`) as grtTime, 
     Approacher, 
     Approached, 
@@ -68,7 +65,7 @@ SELECT
     Notes, 
     strftime('%H:%M',Grt_1_Arr_T) as grt_1_arr_t,  
     strftime('%H:%M',Grt_2_Arr_T) as grt_2_arr_t 
-FROM tblGreeting inner join sessions on (tblGreeting.session = sessions.session) 
+FROM tblGreetings inner join sessions on (tblGreetings.session = sessions.session) 
 ORDER BY SESSIONDATE;
 
 END TRANSACTION;

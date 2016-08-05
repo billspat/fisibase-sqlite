@@ -28,6 +28,7 @@ sqlitefile=${2:-`basename $mdbfile .mdb`.sqlite}
 # to do : make a temporary folder to hold these files
 BASEDIR=`basename $0`
 TMPDIR=`mktemp -d -t ${BASEDIR}` || exit 1
+echo "creating schema sql files in $TMPDIR"
 SQLDIR='buildsql'
 
 
@@ -55,7 +56,7 @@ for table in $tables; do
  	 
     # export the SQL code to create the table from the MDB file
     mdb-schema -T $table "$mdbfile" sqlite > "$CREATEFILE"
-   
+    
     INSERTFILE="$TMPDIR/$table.insert.sql"
     if [[ -e "$INSERTFILE" ]]; then
         rm "$INSERTFILE"
@@ -98,7 +99,10 @@ sqlite3 "$sqlitefile" < "$SQLDIR/fisibase.views.sql" # need to make sure this ru
 
 echo "...done"
 
-echo "removing old tables"
-for table in $tables; do
-    sqlite3 "$sqlitefile"  -cmd "drop table ${table}" < /dev/null
-done
+# list all tables... 
+sqlite3 "$sqlitefile" ".tables"
+
+# echo "removing old tables"
+# for table in $tables; do
+#    sqlite3 "$sqlitefile"  -cmd "drop table ${table}" < /dev/null
+# done

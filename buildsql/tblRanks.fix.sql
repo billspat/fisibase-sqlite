@@ -1,5 +1,4 @@
 -- tblRanks_fix.sql
---  WORK IN PROGRESS
 -- post-processing of table Ranks after direct import from MS Access
 -- based on ranks from Katie/Sarah/Julie which is not official ranks table
 -- sqlite format  
@@ -13,11 +12,6 @@ PRAGMA foreign_keys=OFF;
 
 -- include current columns and add new columns and indexes
 DROP TABLE IF EXISTS `ranks`;
-
-PRAGMA foreign_keys=off;
-
-BEGIN TRANSACTION;
-DROP TABLE IF EXISTS ranks;
 
 CREATE TABLE ranks (
      "hyena" varchar,
@@ -36,12 +30,11 @@ SELECT lower(ID) as hyena,
         lower(Clan), 
         "Absolute (intrasex) Rank", 
         "stdRelativeRank",  
-        "sex", 
+        lower(sex) as sex,
         "status", 
         "notes" 
 FROM tblRanks;
 
-COMMIT;
 
 PRAGMA foreign_keys=on;
 

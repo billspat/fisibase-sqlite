@@ -102,7 +102,7 @@ echo "...done"
 # list all tables... 
 sqlite3 "$sqlitefile" ".tables"
 
-# echo "removing old tables"
-# for table in $tables; do
-#    sqlite3 "$sqlitefile"  -cmd "drop table ${table}" < /dev/null
-# done
+echo "removing old tables"
+for table in $tables; do
+    sqlite3 "$sqlitefile"  -cmd "drop table ${table}" < /dev/null
+done

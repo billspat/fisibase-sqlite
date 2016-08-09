@@ -1,13 +1,8 @@
--- tblRanks_fix.sql
---  WORK IN PROGRESS
--- post-processing of table Ranks after direct import from MS Access
--- based on ranks from Katie/Sarah/Julie which is not official ranks table
--- sqlite format  
--- usage:  first create sqlite database from MS Access
--- then sqlite my_database.sqlite3 < this_file.sql
-
+-- tblPreyDensity_fix.sql
 -- version 0.1 
---     changed field names and types for consistency and compatibility
+--     imports the table and adds preylevel +1 when > avg or -1 when < agg
+--     potentially remove preylevel as not using it yet
+
 
 PRAGMA foreign_keys=OFF;
 

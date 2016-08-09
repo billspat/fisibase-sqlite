@@ -13,7 +13,7 @@ PRAGMA foreign_keys=OFF;
 -- include current columns and add new columns and indexes
 DROP TABLE IF EXISTS `ranks`;
 
-CREATE TABLE ranks (
+CREATE TABLE `ranks` (
      "hyena" varchar,
 	 "year" integer,
 	 "clan" varchar,
@@ -24,7 +24,7 @@ CREATE TABLE ranks (
 	 "notes" varchar
 );
 
-INSERT INTO ranks ( "hyena", "year", "clan", "absIntrasexRank", "stdRelativeRank", "sex", "status", "notes") 
+INSERT INTO `ranks` ( "hyena", "year", "clan", "absIntrasexRank", "stdRelativeRank", "sex", "status", "notes") 
 SELECT lower(ID) as hyena, 
         "Year", 
         lower(Clan), 
@@ -35,6 +35,8 @@ SELECT lower(ID) as hyena,
         "notes" 
 FROM tblRanks;
 
+SELECT 'rows in ranks' as info, count(*) from `ranks`;
 
 PRAGMA foreign_keys=on;
+
 

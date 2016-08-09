@@ -12,12 +12,11 @@
 PRAGMA foreign_keys=OFF;
 
 -- include current columns and add new columns and indexes
-DROP TABLE IF EXISTS `ranks`;
+DROP TABLE IF EXISTS `preydensity`;
 
 PRAGMA foreign_keys=off;
 
 BEGIN TRANSACTION;
-DROP TABLE IF EXISTS ranks;
 
 CREATE TABLE preydensity (
      "clan" varchar,

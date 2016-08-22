@@ -27,7 +27,7 @@ sqlitefile=${2:-`basename $mdbfile .mdb`.sqlite}
 
 # to do : make a temporary folder to hold these files
 BASEDIR=`basename $0`
-TMPDIR=`mktemp -d -t ${BASEDIR}` || exit 1
+TMPDIR=`mktemp -d` || exit 1
 echo "creating schema sql files in $TMPDIR"
 SQLDIR='buildsql'
 

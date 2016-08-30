@@ -48,13 +48,14 @@ The MDB File is NOT Part of the git repository or this project because it's a bi
 
 Now the code is updated and you have the latest MDB file, Run the buildqslite.sh script, specifying the path to the name of the mdb file (db/accessfisi_be.mdb) and the name of the resulting sqlitefile like this (in the terminal)
 
-     ./buildsqlite.sh <path/to/mdbfile> <sqlitefile>
+     ./buildsqlite.sh <path/to/acccessfile.mdb> <path/to/sqlitefile.sqlite>
 
-for example 
+for example, to use an access file in the db folder of this project, use this command
    
-     buildsqlite.sh db/accessfisi_be_current.mdb fisibase.sqlite
+     ./buildsqlite.sh db/accessfisi_be_current.mdb db/fisibase.sqlite
 
-* Using the SQLite File*
+Using the SQLite File
+===
 
 there are dozens of ways to open and view a sqlite file from many programming languages (R, Python, Excel, OpenOffice, etc).  The sure-fired way for rudimentary exploration is to use the sqlite3 program that comes with Mac (and linux).    Start terminal and type
 

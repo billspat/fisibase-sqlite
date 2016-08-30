@@ -48,11 +48,11 @@ The MDB File is NOT Part of the git repository or this project because it's a bi
 
 Now the code is updated and you have the latest MDB file, Run the buildqslite.sh script, specifying the path to the name of the mdb file (db/accessfisi_be.mdb) and the name of the resulting sqlitefile like this (in the terminal)
 
-   ./buildsqlite.sh <path/to/mdbfile> <sqlitefile>
+     ./buildsqlite.sh <path/to/mdbfile> <sqlitefile>
 
 for example 
    
-   buildsqlite.sh db/accessfisi_be_current.mdb fisibase.sqlite
+     buildsqlite.sh db/accessfisi_be_current.mdb fisibase.sqlite
 
 * Using the SQLite File*
 

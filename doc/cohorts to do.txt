@@ -1,0 +1,26 @@
+cohort is assigned for any pair of animals and flexible depending on thresholds
+
+
+convert following MS access sql to sqlite view and put in view code above
+
+    Cohort_1DenEnd:
+    SELECT tblHyenasAll.ID, IIf([DenGrad],IIf([Disappeared],IIf([Disappeared]<[DenGrad],[Disappeared],[DenGrad]),[DenGrad]),IIf([Disappeared]<[Birthdate]+365,[Disappeared],[Birthdate]+365)) AS DenEnd, Birthdate
+    FROM tblHyenasAll;
+
+    Cohort_2PotentialList
+    SELECT Focal.ID, Partner.ID, Focal.Birthdate AS FocalStart, Focal.DenEnd AS FocalEnd, Partner.Birthdate AS PartnerStart, Partner.DenEnd AS PartnerEnd
+    FROM Cohort_1DenEnd AS Focal, Cohort_1DenEnd AS Partner
+    WHERE (((Partner.ID)<>Focal.ID) And ((Focal.Birthdate) Is Not Null) And ((IIf(Partner.Birthdate>=Focal.Birthdate And Partner.Birthdate<=Focal.DenEnd,1,IIf(Focal.Birthdate>=Partner.Birthdate And Focal.Birthdate<=Partner.DenEnd,1,0)))=1));
+
+    Cohort_3Overlap
+    SELECT Cohort_2PotentialList.Focal.ID, Cohort_2PotentialList.Partner.ID, Min(FocalDates.DATE) AS FirstSeenTogether, Max(FocalDates.DATE) AS LastSeenTogether, Count(PartnerObs.Session) AS SessionsSeenTogether
+    FROM tblSessionsAll AS PartnerDates INNER JOIN (tblHyenasPerSessionAll AS PartnerObs INNER JOIN ((tblSessionsAll AS FocalDates INNER JOIN tblHyenasPerSessionAll AS FocalObs ON FocalDates.SESSION=FocalObs.Session) INNER JOIN Cohort_2PotentialList ON FocalObs.Hyena=Cohort_2PotentialList.Focal.ID) ON PartnerObs.Hyena=Cohort_2PotentialList.Partner.ID) ON PartnerDates.SESSION=PartnerObs.Session
+    WHERE (((IIf(FocalDates.DATE<=Cohort_2PotentialList.FocalEnd And FocalDates.DATE<=Cohort_2PotentialList.PartnerEnd,1,0))=1) And ((FocalObs.Session)=PartnerObs.Session))
+    GROUP BY Cohort_2PotentialList.Focal.ID, Cohort_2PotentialList.Partner.ID;
+
+    Cohort_4FocalCounts
+    SELECT Cohort3.Focal.ID AS Focal, Cohort3.Partner.ID AS Partner, Cohort3.FirstSeenTogether, Cohort3.LastSeenTogether, Cohort3.SessionsSeenTogether, Count(FocalDates.SESSION) AS FocalSeen
+    FROM Cohort_3Overlap AS Cohort3 INNER JOIN (tblSessionsAll AS FocalDates INNER JOIN tblHyenasPerSessionAll AS FocalObs ON FocalDates.SESSION=FocalObs.Session) ON Cohort3.Focal.ID=FocalObs.Hyena
+    WHERE (((FocalDates.DATE)<=Cohort3.LastSeenTogether And (FocalDates.DATE)>=Cohort3.FirstSeenTogether))
+    GROUP BY Cohort3.Focal.ID, Cohort3.Partner.ID, Cohort3.FirstSeenTogether, Cohort3.LastSeenTogether, Cohort3.SessionsSeenTogether;
+    

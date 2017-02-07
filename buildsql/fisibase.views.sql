@@ -41,3 +41,5 @@ WHERE
 	SESSIONDATE between '2010/01/01' and '2011/01/01'
 	and hyenas.clan = 'talek'
 GROUP BY hyenas.hyena;
+
+-- TO DO add cohort views, see doc folder

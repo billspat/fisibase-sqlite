@@ -24,7 +24,7 @@ First you must install the open source mdb-tools software.  One easy way is to f
     brew update
     brew install mdbtools
 
-    Test this install by running the following command in the terminal 
+Then Test this install by running the following command in the terminal 
     
     which mdb-export
 
@@ -32,16 +32,31 @@ Note that 'homebrew' is useful for installing other unix-style software for deve
 
 *Converting the Database on Mac*
 
-First download the code in this git repository either by downloading the zip file or using 
+Start the the terminal, change to the directory where the fisibase-sqlite project files are
+
+        cd to_the_project_folder
 
 
-In the terminal, change to this directory, and Run the buildqslite.sh script, specifying the path to the name of the mdb file (db/accessfisi_be.mdb) and the name of the resulting sqlitefile like this (in the terminal)
+First download the code in this git repository either by downloading the zip file or if you are using git for this program, make sure you get the latest code by 
 
-   ./buildsqlite.sh <path/to/mdbfile> <sqlitefile>
+     git pull
 
-   for example buildsqlite.sh db/accessfisi_be_current.mdb fisibase.sqlite
 
-* Using the SQLite File*
+Copy the latest version of the MS Access backend file you want.  Note that this sqlite program uses a non-standard ranks table and that must be in the database for 
+this program to run, named tblRanks.   Ask Pat for details.   You can put this MDB file anywhere, but the 'db' folder of this fisibase-sqlite project is a good place. 
+The MDB File is NOT Part of the git repository or this project because it's a big file. 
+
+Now the code is updated and you have the latest MDB file, Run the buildqslite.sh script, specifying the path to the name of the mdb file (db/accessfisi_be.mdb) and the name of the resulting sqlitefile like this (in the terminal)
+
+     ./buildsqlite.sh <path/to/acccessfile.mdb> <path/to/sqlitefile.sqlite>
+
+for example, to use an access file in the db folder of this project, use this command
+   
+     ./buildsqlite.sh db/accessfisi_be_current.mdb db/fisibase.sqlite
+
+Using the SQLite File
+===
+
 there are dozens of ways to open and view a sqlite file from many programming languages (R, Python, Excel, OpenOffice, etc).  The sure-fired way for rudimentary exploration is to use the sqlite3 program that comes with Mac (and linux).    Start terminal and type
 
 sqlite3 fisibase.sqlite

@@ -29,7 +29,7 @@ sqlitefile=${2:-`basename $mdbfile .mdb`.sqlite}
 
 # to do : make a temporary folder to hold these files
 BASEDIR=`basename $0`
-TMPDIR=`mktemp -d -t ${BASEDIR}` || exit 1
+TMPDIR=`mktemp -d` || exit 1
 echo "creating schema sql files in $TMPDIR"
 SQLDIR='buildsql'
 
@@ -109,10 +109,12 @@ echo "...done"
 # list all tables... 
 sqlite3 "$sqlitefile" ".tables"
 
-echo "removing old tables"
-for table in $tables; do
-    sqlite3 "$sqlitefile"  -cmd "drop table ${table}" < /dev/null
-done
+# disable removing old tables for now
+# echo "removing old tables"
+# for table in $tables; do
+#     sqlite3 "$sqlitefile"  -cmd "drop table ${table}" < /dev/null
+# done
+
 
 # turn journaling back on when sqlitedb is complete
 sqlcmd="PRAGMA journal_mode=DELETE;"

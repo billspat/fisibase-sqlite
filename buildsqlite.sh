@@ -8,6 +8,8 @@
 # sqlite files output will run on any platform with sqlite3
 # then looks for 'fixing' sql to transform 
 
+# turns sqlite3 journalling during db creation, and back on when finished for regular use
+
 hash mdb-export >/dev/null 2>&1 || { echo >&2 "requires mdb-export but it doesn't appear to be installed.  \nYou can install with homebrew ( http://brew.sh ) on Mac.";  echo "After installing, use 'brew install mdbtools'"; exit 1; }
 
 if [ "$#" -lt 1 ]; then
@@ -43,6 +45,11 @@ tables="tblHyenas tblSessions tblHyenasPerSession tblAggression tblDarting tblGr
 if [[ -e "$sqlitefile" ]]; then
     rm "$sqlitefile"
 fi
+
+# create empty db file and set journaling off while buidling
+sqlite3 "$sqlitefile" ".databases"
+sqlcmd="PRAGMA journal_mode=OFF;"
+sqlite3 "$sqlitefile"  -cmd "$sqlcmd" < /dev/null
 
 for table in $tables; do
     echo $table...
@@ -106,3 +113,7 @@ echo "removing old tables"
 for table in $tables; do
     sqlite3 "$sqlitefile"  -cmd "drop table ${table}" < /dev/null
 done
+
+# turn journaling back on when sqlitedb is complete
+sqlcmd="PRAGMA journal_mode=DELETE;"
+sqlite3 "$sqlitefile"  -cmd "$sqlcmd" < /dev/null
